@@ -1,26 +1,24 @@
 function field_line_plotter(u,v,x0,y0,xmin,xmax,ymin,ymax,LineCount,tsim,dt)
 %{
-plot_field_lines: Plots field lines of fluid flow
- plot_field_lines(u,v,x0,y0,xmin,xmax,ymin,ymax,N,tsim,dt):
-   Plots field lines of fluid flow, Streamlines, Streaklines and Pathlines
+ Plots field lines of fluid flow: Streamlines, Pathlines, and Streaklines
 
  input: 
-   u       = A function handle for the x component of the velocity vector
-   v       = A function handle for the y component of the velocity vector
-   x0      = x-coordinate of the starting position of a particle
-   y0      = y-coordinate of the starting position of a particle
-   xmin    = Min value of x in the spatial domain to be plotted
-   xmax    = Max value of x in the spatial domain to be plotted
-   ymin    = Min value of y in the spatial domain to be plotted
-   ymax    = Max value of y in the spatial domain to be plotted
+   u       = A function for x component of velocity vector
+   v       = A function for y component of velocity vector
+   x0      = x-coordinate of the initial position of a fluid element
+   y0      = y-coordinate of the initial position of a fluid element
+   xmin    = Min value of x to be plotted
+   xmax    = Max value of x to be plotted
+   ymin    = Min value of y to be plotted
+   ymax    = Max value of y to be plotted
    LineCount       = No. of divisions along each of the 2 dimensions (x and y)
    tsim    = Maximum of time domain
    dt      = Time interval
  output:
    A video figure in which the lines represent the following.
-   1. Blue vectors  : Velocity vector field
+   1. Magenta vectors  : Velocity vector field
    2. Red dotted line  : Pathline
-   3. Magenta solid lines : Streamlines
+   3. Blue solid lines : Streamlines
    4. Green solid line : Streakline
 %}
 
@@ -30,7 +28,7 @@ plot_field_lines: Plots field lines of fluid flow
     xp = x0; yp = y0;
     t = 0;
     figure
-    set(gcf,'Position',[1 1 1920 961])
+    set(gcf,'Position',[50 50 1200 700])
     vid = VideoWriter('flow_lines.avi','Uncompressed AVI');
     open(vid);
     while ((t < tsim) && (xp(end) < (0.99*xmax)) && (yp(end) < (0.99*ymax))) 
